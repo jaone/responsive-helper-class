@@ -1,12 +1,12 @@
 {
-  "name": "birgroup-shopping",
+  "name": "Responsive Helper Class",
   "version": "1.0.0",
-  "description": "Birgroup Shopping Project | grunt,bootstrap,less,slick",
+  "description": "Make Responsive Helper Class with Node.js and Less",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "buramedia",
+  "author": "Jaone",
   "license": "ISC",
   "devDependencies": {
     "grunt": "*",
@@ -16,8 +16,6 @@
   },
   "dependencies": {
     "g": "^2.0.1",
-    "grunt": "^1.0.1",
-    "node": "^8.3.0",
-    "npm": "^5.3.0"
+    "grunt": "^1.0.1"
   }
 }
