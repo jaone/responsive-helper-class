@@ -1,5 +1,5 @@
 {
-  "name": "Responsive Helper Class",
+  "name": "responsive-helper-class",
   "version": "1.0.0",
   "description": "Make Responsive Helper Class with Node.js and Less",
   "main": "app.js",

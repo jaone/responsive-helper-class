@@ -4,10 +4,9 @@ const
 	// required
 	fs = require('fs'),
 	// variables
-	generatorFiles 	= 'less/generetor.less',
-	helperFiles 	= 'less/helper.less',
-	csValuesFiles	= 'less/constructor-values.less',
-	cssProperties 	= 'css-properties.json';
+	generatorFiles 	= 'generetor.less',
+	csValuesFiles	= 'assets/less/constructor-values.less',
+	cssProperties 	= 'assets/css-properties.json';
 
 let 
 	generatorAllKeys = ["property","prefixName","responsiveClass"],
