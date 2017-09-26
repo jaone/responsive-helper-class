@@ -34,7 +34,7 @@ fs.watch(generatorFiles, { encoding: 'buffer' }, (eventType, filename) => {
 					.replace('.generator', '')
 					.replace('(', '{"')
 					.replace(/@/g,'')
-					.replace(')', '"}')
+					.replace(')', '"}') 
 					.replace(';', '')
 					.replace(/:/g,'":"')
 					.replace(/;/g,'')
@@ -51,10 +51,8 @@ fs.watch(generatorFiles, { encoding: 'buffer' }, (eventType, filename) => {
 						delete definedKeys.values;
 
 	    			if(_item.property == _mixinItem.property) {
-							
-						if (_item.values != 'num') {
-							
-							// concatKeys leri tek satıra düşür. if _item.values == 'num' değilse generatorLoopAllKeys çağır ve 				
+							 
+						if (_item.values != 'num') { 				
 
 		    				concatKeys(_mixinItem,generatorAllKeys,definedKeys).then((_concatItem) => {
 								
@@ -96,13 +94,10 @@ let readFile = (file) => {
 		fs.readFile(file, 'utf8', (err, data) => {
 		    if (err) reject(err)  
 		    else resolve(data)
-		    // console.log(data)
 		});
 	})
 };
 
-// keyler boşmu dolumu o kontrol edilecek
-//tekrara düşüp defalarca aynı şeyi yazıyor. Bunu loopsuz şekilde veya looplu düzgün olacak şekilde çöz 
 
 let concatKeys = (currentKeys,allKeys,dk) => {
 	let _loopValues = "",
@@ -111,7 +106,6 @@ let concatKeys = (currentKeys,allKeys,dk) => {
 
 	ckKeys.map((key,index) => {
 		if (key != undefined) {
-			console.log(ck)
 			if ( ck[key] != undefined) {
 				 _loopValues+=`@${key}:${ck[key]}`
 				 
