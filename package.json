@@ -1,0 +1,23 @@
+{
+  "name": "birgroup-shopping",
+  "version": "1.0.0",
+  "description": "Birgroup Shopping Project | grunt,bootstrap,less,slick",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "buramedia",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-cli": "*",
+    "grunt-contrib-less": "*",
+    "grunt-contrib-watch": "*"
+  },
+  "dependencies": {
+    "g": "^2.0.1",
+    "grunt": "^1.0.1",
+    "node": "^8.3.0",
+    "npm": "^5.3.0"
+  }
+}
