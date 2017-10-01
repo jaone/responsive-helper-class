@@ -1,0 +1,46 @@
+ 
+@import "variables.less";
+@import "constructor-values.less";
+
+
+
+.generator(@property; @value; @prefixName; @responsiveClass) {
+
+    & when (@responsiveClass = none) {
+       .@{prefixName}-@{value} {
+          @{property}: ~"@{value}";
+        };
+    }
+    & when not (@responsiveClass = none) {
+        @media @@responsiveClass {
+          .@{prefixName}-@{value}-@{responsiveClass} {
+            @{property}: ~"@{value}";
+          };
+        };
+    }
+
+   
+} 
+
+.generator-increase-loop(@property; @prefixName; @responsiveClass; @increaseAmount; @sizeType; @counterEnd; @counterBegin; ) { 
+  .generator-increase-loop(@counterEnd, @counterBegin);
+
+  .generator-increase-loop(@counterEnd, @counterBegin) when (@counterBegin =< @counterEnd) {
+
+    & when (@responsiveClass = none) {
+      .@{prefixName}@{counterBegin}-@{responsiveClass} {
+        @{property}: ~"@{counterBegin}@{sizeType}";
+      }
+    }
+
+    & when not (@responsiveClass = none) {
+        @media @@responsiveClass {
+          .@{prefixName}-@{counterBegin}-@{responsiveClass} {
+            @{property}: ~"@{counterBegin}@{sizeType}";
+          }
+        }
+    }
+   
+    .generator-increase-loop(@counterEnd, (@counterBegin + @increaseAmount))
+  } 
+} 

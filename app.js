@@ -3,6 +3,8 @@
 const
 	// required
 	fs = require('fs'),
+	EventEmitter = require('events'),
+
 	// variables
 	generatorFiles 	= 'generetor.less',
 	csValuesFiles	= 'assets/less/constructor-values.less',
@@ -10,15 +12,17 @@ const
 
 let 
 	generatorAllKeys = ["property","prefixName","responsiveClass"],
-	generatorLoopAllKeys = ["property","prefixName","responsiveClass","increaseAmount","sizeType","counterEnd","counterBegin"],
-	propertyAndValues = "";
+	generatorLoopAllKeys = ["property","prefixName","responsiveClass","increaseAmount","sizeType","counterEnd","counterBegin"];
+
+global.propertyAndValues = "";
+class MyEmitter extends EventEmitter {}
 
 fs.watch(generatorFiles, { encoding: 'buffer' }, (eventType, filename) => {
   if (eventType == "change") {
   	
   	// Clears
   	fs.writeFile(csValuesFiles, '', () => {});
-  	propertyAndValues = "";
+  	global.propertyAndValues = "";
 
   	// Read Generator Less
     readFile(generatorFiles).then((data) => {
@@ -46,7 +50,6 @@ fs.watch(generatorFiles, { encoding: 'buffer' }, (eventType, filename) => {
 				
 	    		JSON.parse(data).map((_item) => {
 
-
 	    			let definedKeys = Object.assign({}, _item);
 						delete definedKeys.values;
 
@@ -57,7 +60,7 @@ fs.watch(generatorFiles, { encoding: 'buffer' }, (eventType, filename) => {
 		    				concatKeys(_mixinItem,generatorAllKeys,definedKeys).then((_concatItem) => {
 								
 								_item.values.map(_values => {
-									propertyAndValues += `.generator(${_concatItem},@value:${_values}); \n`;
+									global.propertyAndValues += `.generator(${_concatItem},@value:${_values}); \n`;
 								})
 								
 							});
@@ -65,28 +68,35 @@ fs.watch(generatorFiles, { encoding: 'buffer' }, (eventType, filename) => {
 						}else {
 							concatKeys(_mixinItem,generatorLoopAllKeys,definedKeys).then((_concatItem) => {
 
-								propertyAndValues += `.generator-increase-loop(${_concatItem}); \n`;
+								global.propertyAndValues += `.generator-increase-loop(${_concatItem}); \n`;
 								
 							});
-							
 						}
-	    				
 	    			}
 	    		})
-
-	    		// Write Less
-			    fs.appendFile(csValuesFiles, propertyAndValues,  (err) => {
-				  if (err) throw err;
-				   
-				});
+			   
 	    	})
     		
     	})
+
+    	// Write Less
+	    myEmitter.emit('write:less', csValuesFiles, global.propertyAndValues);
 
     })
 
   }
 });
+
+
+
+const myEmitter = new MyEmitter();
+
+myEmitter.on('write:less', (file,content) => {
+   fs.appendFile(file, content,  (err) => {
+	  if (err) throw err;
+	});
+});
+
 
 
 let readFile = (file) => {
@@ -111,7 +121,6 @@ let concatKeys = (currentKeys,allKeys,dk) => {
 				 
 			}else {
 				_loopValues+=`@${key}`;
-				
 			}
 
 			if (ckKeys.length -1 != index) {
