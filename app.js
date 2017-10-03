@@ -3,7 +3,6 @@
 const
 	// required
 	fs = require('fs'),
-	EventEmitter = require('events'),
 
 	// variables
 	generatorFiles 	= 'generetor.less',
@@ -15,7 +14,6 @@ let
 	generatorLoopAllKeys = ["property","prefixName","responsiveClass","increaseAmount","sizeType","counterEnd","counterBegin"];
 
 global.propertyAndValues = "";
-class MyEmitter extends EventEmitter {}
 
 fs.watch(generatorFiles, { encoding: 'buffer' }, (eventType, filename) => {
   if (eventType == "change") {
@@ -78,9 +76,15 @@ fs.watch(generatorFiles, { encoding: 'buffer' }, (eventType, filename) => {
 	    	})
     		
     	})
-
-    	// Write Less
-	    myEmitter.emit('write:less', csValuesFiles, global.propertyAndValues);
+    	var checkData = setInterval(()=>{
+    		if(global.propertyAndValues != ""){
+    			clearInterval(checkData);
+    			writeFile(csValuesFiles, global.propertyAndValues).then((data) => {
+	    			console.log("write")
+	    		})
+    		}
+    	},100)
+    	
 
     })
 
@@ -89,13 +93,15 @@ fs.watch(generatorFiles, { encoding: 'buffer' }, (eventType, filename) => {
 
 
 
-const myEmitter = new MyEmitter();
-
-myEmitter.on('write:less', (file,content) => {
-   fs.appendFile(file, content,  (err) => {
-	  if (err) throw err;
-	});
-});
+let writeFile = (file,content) => {
+	return new Promise((resolve,reject)=>{
+		fs.writeFile(file, content,  (err, data) => {
+		   if (err) reject(err)  
+		   else resolve(data)
+		});
+	})
+	  
+} 
 
 
 
