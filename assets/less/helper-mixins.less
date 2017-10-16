@@ -28,7 +28,7 @@
   .generator-increase-loop(@counterEnd, @counterBegin) when (@counterBegin =< @counterEnd) {
 
     & when (@responsiveClass = none) {
-      .@{prefixName}@{counterBegin}-@{responsiveClass} {
+      .@{prefixName}-@{counterBegin} {
         @{property}: ~"@{counterBegin}@{sizeType}";
       }
     }
