@@ -48,10 +48,10 @@ fs.watch(generatorFiles, { encoding: 'buffer' }, (eventType, filename) => {
 				
 	    		JSON.parse(data).map((_item) => {
 
-	    			let definedKeys = Object.assign({}, _item);
-						delete definedKeys.values;
-
 	    			if(_item.property == _mixinItem.property) {
+
+	    				let definedKeys = Object.assign({}, _item);
+						delete definedKeys.values;
 							 
 						if (_item.values != 'num') { 				
 
@@ -117,7 +117,7 @@ let readFile = (file) => {
 
 let concatKeys = (currentKeys,allKeys,dk) => {
 	let _loopValues = "",
-		ck= Object.assign(currentKeys, dk),
+		ck= Object.assign(dk, currentKeys),
 		ckKeys = new concatArr(Object.keys(ck), allKeys);
 
 	ckKeys.map((key,index) => {

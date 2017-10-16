@@ -1,0 +1,45 @@
+@media only screen and (min-width:1200px) {
+  .fs-2-lg {
+    font-size: 2em;
+  }
+}
+@media only screen and (min-width:1200px) {
+  .fs-4-lg {
+    font-size: 4em;
+  }
+}
+@media only screen and (min-width:1200px) {
+  .fs-6-lg {
+    font-size: 6em;
+  }
+}
+@media only screen and (min-width:1200px) {
+  .fs-8-lg {
+    font-size: 8em;
+  }
+}
+@media only screen and (min-width:1200px) {
+  .fs-10-lg {
+    font-size: 10em;
+  }
+}
+@media only screen and (min-width:768px) and (max-width:991px) {
+  .ps-static-sm {
+    position: static;
+  }
+}
+@media only screen and (min-width:768px) and (max-width:991px) {
+  .ps-absolute-sm {
+    position: absolute;
+  }
+}
+@media only screen and (min-width:768px) and (max-width:991px) {
+  .ps-fixed-sm {
+    position: fixed;
+  }
+}
+@media only screen and (min-width:768px) and (max-width:991px) {
+  .ps-relative-sm {
+    position: relative;
+  }
+}

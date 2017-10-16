@@ -23,7 +23,7 @@ module.exports = function(grunt) {
           ieCompat: false    
 		    },
 		    files: {
-		      "assets/css/main.min.css": "assets/less/main.less",
+		      "assets/css/main.css": "assets/less/main.less",
 		    }
       }
     },
