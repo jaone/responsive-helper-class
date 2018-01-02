@@ -26,6 +26,56 @@
       "prefixName": "lh"
    },
    {
+    "property":"margin",
+    "values": ["num"],
+    "prefixName": "m"
+   },
+   {
+    "property":"margin-right",
+    "values": ["num"],
+    "prefixName": "mr"
+   },
+   {
+    "property":"margin-left",
+    "values": ["num"],
+    "prefixName": "ml"
+   },
+   {
+    "property":"margin-top",
+    "values": ["num"],
+    "prefixName": "mt"
+   },
+   {
+    "property":"margin-bottom",
+    "values": ["num"],
+    "prefixName": "mb"
+   },
+   {
+    "property":"padding",
+    "values": ["num"],
+    "prefixName": "p"
+   },
+   {
+    "property":"padding-right",
+    "values": ["num"],
+    "prefixName": "pr"
+   },
+   {
+    "property":"padding-left",
+    "values": ["num"],
+    "prefixName": "pl"
+   },
+   {
+    "property":"padding-top",
+    "values": ["num"],
+    "prefixName": "pt"
+   },
+   {
+    "property":"padding-bottom",
+    "values": ["num"],
+    "prefixName": "pb"
+   },
+   {
       "property":"text-decoration-line",
       "values":[
          "none",
